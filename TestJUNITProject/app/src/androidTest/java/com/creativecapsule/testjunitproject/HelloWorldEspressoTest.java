@@ -13,6 +13,7 @@ import android.support.test.rule.ActivityTestRule;
 import org.junit.Test;
 
 import static android.support.test.espresso.Espresso.onData;
+import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.*;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
@@ -101,6 +102,23 @@ public class HelloWorldEspressoTest {
                 .check(matches(not(isChecked())));
 
 
+
+
+    }
+
+    @Test
+    public  void checkSecondActivity(){
+
+        onView(withId(R.id.submitButton)).check(matches(notNullValue()));
+        onView(withId(R.id.submitButton)).check(matches(withText("submit")));
+        onView(withId(R.id.submitButton)).perform(click());
+
+        onView(withId(R.id.displaytext))
+                .check(matches(withText(("Test"))));
+
+        pressBack();
+        onView(withId(R.id.submitButton))
+                .check(matches(withText(("submit"))));
 
 
     }

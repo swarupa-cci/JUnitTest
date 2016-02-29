@@ -1,6 +1,7 @@
 package com.creativecapsule.testjunitproject;
 
 import android.content.ClipData;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -56,8 +57,11 @@ public class ListActivity extends AppCompatActivity {
                             View view, int position, long id) {
 
 
-                        Toast.makeText(getApplicationContext(),
-                                ((TextView) view).getText(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getApplicationContext(),
+//                                ((TextView) view).getText(), Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent(ListActivity.this,ListDetailActivity.class);
+                        startActivity(intent);
                     }
                 });
 

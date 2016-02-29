@@ -51,22 +51,7 @@ public class TestIntent {
 
     }*/
 
-    @Test
-   public  void checkSecondActivity(){
 
-        onView(withId(R.id.submitButton)).check(matches(notNullValue()));
-        onView(withId(R.id.submitButton)).check(matches(withText("submit")));
-        onView(withId(R.id.submitButton)).perform(click());
-
-        onView(withId(R.id.displaytext))
-                .check(matches(withText(("Test"))));
-
-        pressBack();
-        onView(withId(R.id.submitButton))
-                .check(matches(withText(("submit"))));
-
-
-    }
  @Test
   public void checkButtonClick(){
       onView(withId(R.id.listButton)).check(matches(notNullValue()));
