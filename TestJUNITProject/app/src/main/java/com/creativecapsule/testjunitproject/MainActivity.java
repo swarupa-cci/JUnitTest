@@ -10,11 +10,17 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.orm.SugarContext;
 
 import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
+
+    private TextView text;
+    private Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-       final TextView text = (TextView)findViewById(R.id.sendText);
+        SugarContext.init(this);
+        text = (TextView)findViewById(R.id.sendText);
         Button submitButton = (Button)findViewById(R.id.submitButton);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,9 +39,23 @@ public class MainActivity extends AppCompatActivity {
                 //intent.putExtra("value", text.getText());
                 intent.putExtra("value", "Test");
                 startActivity(intent);
+
+               // saveData();
             }
         });
 
+        spinner = (Spinner)findViewById(R.id.spinner);
+
+
+
+    }
+
+    private void saveData(){
+
+        Test testDb = new Test();
+        testDb.text = text.getText().toString();
+        testDb.spinnerValue = String.valueOf(spinner.getSelectedItem());
+        testDb.save();
     }
 
     @Override
