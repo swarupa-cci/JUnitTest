@@ -4,6 +4,7 @@ import org.junit.runner.RunWith;
 import org.junit.Rule;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.support.test.espresso.intent.Intents;
 import android.support.test.espresso.intent.rule.IntentsTestRule;
@@ -24,6 +25,7 @@ import static android.support.test.espresso.intent.Intents.intending;
 import static android.support.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 
 import static android.support.test.espresso.matcher.ViewMatchers.isChecked;
+import static android.support.test.espresso.matcher.ViewMatchers.isSelected;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withSpinnerText;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
@@ -44,13 +46,13 @@ import static org.hamcrest.core.IsNull.notNullValue;
  */
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class HelloWorldEspressoTest {
+public class HelloWorldEspressoTest  {
 
 //    @Before
 //    public void setUp() throws Exception {
 //        Intents.init();
 //    }
-
+     Context targetContext;
     @Rule
     public final ActivityTestRule rule =
             new ActivityTestRule<>(MainActivity.class);
@@ -92,6 +94,10 @@ public class HelloWorldEspressoTest {
         onData(allOf(is(instanceOf(String.class)), is("A"))).perform(click());
         onView(withId(R.id.spinner)).check(matches(withSpinnerText(containsString("A"))));
 
+
+        onView(withId(R.id.sendText)).perform(typeText("John"));
+
+
         onView(withId(R.id.radioBtn1))
                 .perform(click());
 
@@ -105,6 +111,7 @@ public class HelloWorldEspressoTest {
 
 
     }
+
 
     @Test
     public  void checkSecondActivity(){
